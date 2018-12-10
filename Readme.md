@@ -1,7 +1,7 @@
 # Личный проект «Пиксель хантер» [![Build status][travis-image]][travis-url]
 
 * Студент: [Степан Кондрат](https://up.htmlacademy.ru/ecmascript/7/user/422155).
-* Наставник: `Неизвестно`.
+* Наставник: `Нет наставника`.
 
 ---
 
