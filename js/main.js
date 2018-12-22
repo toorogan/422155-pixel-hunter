@@ -1,6 +1,3 @@
-import {renderScreen} from './logic/utils';
-import introScreen from './screens/intro';
+import Aplication from '.aplication';
 
-renderScreen(introScreen);
-
-
+Aplication.run();
