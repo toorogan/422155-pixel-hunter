@@ -1,7 +1,5 @@
-import {renderScreen} from "./logic/utils";
-import introScreen from "./screens/intro";
-
-renderScreen(introScreen);
+// import IntroScreen from './views/intro/intro';
+import GreetingScreen from './views/greeting/greeting';
 
 const main = document.getElementById(`main`);
 
@@ -12,7 +10,8 @@ const changeView = (element) => {
 
 class Aplication {
   static run() {
-    changeView();
+    const greeting = new GreetingScreen();
+    changeView(greeting);
   }
 }
 

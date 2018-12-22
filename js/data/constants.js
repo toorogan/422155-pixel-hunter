@@ -17,3 +17,9 @@ export const GameType = {
   PHOTO_OR_PICTURE_TWO: 2,
   FIND_ONE: 3
 };
+
+export const INITIAL_GAME = Object.freeze({
+  level: 1,
+  lives: 4,
+  time: 30
+});
