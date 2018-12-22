@@ -12,3 +12,8 @@ export const Limit = {
   SLOW_TIME: 20,
   TIMER_TWINK: 5
 };
+export const GameType = {
+  PHOTO_OR_PICTURE_ONE: 1,
+  PHOTO_OR_PICTURE_TWO: 2,
+  FIND_ONE: 3
+};
