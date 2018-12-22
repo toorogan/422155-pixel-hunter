@@ -1,0 +1,14 @@
+export const Rate = {
+  CORRECT_ANSWER_POINTS: 100,
+  FAST_ANSWER_BONUS: 50,
+  SLOW_ANSWER_FINE: 50,
+  FOR_LIVE_BONUS: 50
+};
+export const Limit = {
+  LIVES: 4,
+  TIME: 30,
+  LEVELS: 10,
+  FAST_TIME: 10,
+  SLOW_TIME: 20,
+  TIMER_TWINK: 5
+};
