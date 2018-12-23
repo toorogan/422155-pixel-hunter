@@ -1,7 +1,7 @@
 import {prosessServerData} from "./data/adapter";
 
 const SERVER_URL = `https://es.dump.academy/pixel-hunter`;
-const APP_ID = 99041455;
+const APP_ID = 22101985;
 const DEFAULT_NAME = `John Doe`;
 
 const checkServer = (response) => {
