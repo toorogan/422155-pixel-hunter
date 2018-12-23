@@ -1,6 +1,6 @@
 import IntroView from "./intro-view";
 
-export default class IntroScreen {
+class IntroScreen {
   constructor() {
     this.content = new IntroView();
     this.root = document.createElement(`div`);
@@ -12,3 +12,4 @@ export default class IntroScreen {
     return this.root;
   }
 }
+export default IntroScreen;

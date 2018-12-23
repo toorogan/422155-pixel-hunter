@@ -4,7 +4,7 @@ const render = (html) => {
   return wrapper;
 };
 
-export default class AbstractView {
+class AbstractView {
   constructor() {
 
   }
@@ -29,3 +29,4 @@ export default class AbstractView {
   bind() {
   }
 }
+export default AbstractView;
