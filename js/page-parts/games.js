@@ -1,6 +1,7 @@
 import {GameType} from '../data/constants';
+import statsPart from './stats';
 
-const gameFormTemplate = (level) => {
+const gameFormTemplate = (level, answers) => {
   switch (level.gameType) {
     case GameType.PHOTO_OR_PICTURE_TWO:
       return `<section class="game">
@@ -29,12 +30,11 @@ const gameFormTemplate = (level) => {
             </label>
         </div>
         </form>
-        <ul class="stats">
-        </ul>
+        ${statsPart(answers)}
     </section>`;
     case GameType.PHOTO_OR_PICTURE_ONE:
       return `<section class="game">
-    <p class="game__task">#{level.description}</p>
+    <p class="game__task">${level.description}</p>
     <form class="game__content  game__content--wide">
     <div class="game__option">
         <img src="${level.questions[0].image}" alt="Option 1" width="705" height="455">
@@ -48,8 +48,7 @@ const gameFormTemplate = (level) => {
         </label>
     </div>
     </form>
-    <ul class="stats">
-    </ul>
+    ${statsPart(answers)}
     </section>`;
 
     case GameType.FIND_ONE:
@@ -66,8 +65,7 @@ const gameFormTemplate = (level) => {
             <img src="${level.questions[2].image}" alt="Option 3" width="304" height="455">
         </div>
         </form>
-        <ul class="stats">
-        </ul>
+        ${statsPart(answers)}
         </section>`;
     default:
       throw new RangeError(`Wrong type of game`);

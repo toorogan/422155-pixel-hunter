@@ -1,7 +1,7 @@
 import {GameType} from '../../data/constants';
 import AbstractView from '../abstract-view';
 import gameFormTemplate from '../../page-parts/games';
-import statsPart from '../../page-parts/stats';
+// import statsPart from '../../page-parts/stats';
 
 const showRightAnswerSingleGame = (debugMode, element, level) => {
   if (debugMode) {
@@ -73,7 +73,12 @@ const handleTripleGame = (element, level, debugMode, onAnswer) => {
     showRightAnswerTripleGame(correctImageSrc, debugMode, element);
   }
   tripleForm.addEventListener(`click`, (evt) => {
-    const selectedImageSrc = evt.target.querySelector(`img`).getAttribute(`src`);
+    let selectedImageSrc = ``;
+    if (!event.target.src) {
+      selectedImageSrc = evt.target.querySelector(`img`).src;
+    } else {
+      selectedImageSrc = evt.target.src;
+    }
     if (level.description === `Найдите фото среди изображений`) {
       correctImageSrc = questionsArr.find((question) => question.answer === `photo`).image;
     } else {
@@ -84,16 +89,17 @@ const handleTripleGame = (element, level, debugMode, onAnswer) => {
 };
 
 
-export default class GameView extends AbstractView {
+class GameView extends AbstractView {
   constructor(level, answers) {
     super();
     this.level = level;
     this.answers = answers;
     this.debugMode = new URLSearchParams(document.location.search).get(`debug`) === `true`;
+
   }
 
   get template() {
-    return ` ${this.describeDebugMode()}${gameFormTemplate(this.level)}${statsPart(this.answers)}`;
+    return ` ${this.describeDebugMode()}${gameFormTemplate(this.level, this.answers)}`;
   }
 
   bind() {
@@ -120,3 +126,4 @@ export default class GameView extends AbstractView {
     return answer;
   }
 }
+export default GameView;

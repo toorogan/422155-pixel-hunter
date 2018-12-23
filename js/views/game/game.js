@@ -20,19 +20,18 @@ class GameScreen {
     this._interval = null;
     this.updateHeader();
   }
-  createHeaderElement() {
-    this.header = document.createElement(`header`);
-    this.header.className = `header`;
 
-    this.header.appendChild(this.backButton.element);
-    this.header.appendChild(this.gameHeader.element);
-
-  }
 
   get element() {
     return this.root;
   }
+  createHeaderElement() {
+    this.header = document.createElement(`header`);
+    this.header.className = `header`;
+    this.insertChildren(this.header, [this.backButton.element.children[0], this.gameHeader.element.children[0], this.gameHeader.element.children[1]]);
 
+
+  }
   stopGame() {
     clearInterval(this._interval);
   }
@@ -44,7 +43,7 @@ class GameScreen {
     this._interval = setInterval(() => {
       if (!this.model.isTimeEnd()) {
         this.model.tick();
-        this.updateHeader();
+        this.updateTimer();
       } else {
         this.answer(false);
       }
@@ -74,11 +73,23 @@ class GameScreen {
   updateHeader() {
     const gameHeader = new HeaderGameView(this.model.state);
     const backButton = new BackBtnView();
-    this.header.replaceChild(gameHeader.element, this.gameHeader.element);
-    this.header.replaceChild(backButton.element, this.backButton.element);
+
+    this.header.innerHTML = ``;
+    this.insertChildren(this.header, [backButton.element.children[0], gameHeader.element.children[0], gameHeader.element.children[1]]);
+
     this.gameHeader = gameHeader;
     this.backButton = backButton;
     this.backButton.onRestartClick = this.restart.bind(this);
+  }
+  updateTimer() {
+    const timer = this.header.querySelector(`.game__timer`);
+    timer.innerText = this.model.state.time;
+  }
+  insertChildren(element, childNodes) {
+    for (let child of childNodes) {
+      element.appendChild(child);
+    }
+
   }
   changeLevel() {
     this.updateHeader();

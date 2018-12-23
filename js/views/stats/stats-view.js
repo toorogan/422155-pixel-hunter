@@ -9,7 +9,7 @@ class StatsView extends AbstractView {
   }
 
   get template() {
-    return `<section class="result"><h2 class="result__title">${this.state.lives ? `Победа!` : `Проигрыш`}</h2>${statsTableTemplate(this.state, this.answers, 1)}</section>}`;
+    return `<section class="result"><h2 class="result__title">${this.state.lives ? `Победа!` : `Проигрыш`}</h2>${statsTableTemplate(this.state, this.answers, 1)}</section>`;
   }
 }
 export default StatsView;

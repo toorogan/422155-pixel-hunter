@@ -13,25 +13,26 @@ import ModalErrorView from './views/modals/modal-error-view';
 import ModalConfirmElement from './views/modals/modal-confirm';
 
 
-const ANIMATION_OUT = 3000;
+const ANIMATION_OUT_TIME = 2500;
 
 const main = document.getElementById(`main`);
 
 let questData;
 
-const removeIntro = () => {
-  const introPlace = document.querySelector(`.intro__place`);
-  if (introPlace) {
-    const greetingPlace = document.querySelector(`.greeting__place`);
-    main.removeChild(introPlace);
-    greetingPlace.classList.remove(`greeting__place-animate`, `greeting__place`);
-  }
-};
-
 const changeView = (element) => {
   main.innerHTML = ``;
   main.appendChild(element);
 };
+
+const removeIntro = () => {
+  const introPlace = document.querySelector(`.intro__place`);
+  if (!introPlace) {
+    return;
+  }
+  const greeting = new GreetingScreen();
+  changeView(greeting.element);
+};
+
 
 class Aplication {
   static run() {
@@ -46,17 +47,11 @@ class Aplication {
   }
   static showError(error) {
     const modalError = new ModalErrorView(error);
-    main.appendChild(modalError.element);
+    main.parentNode.appendChild(modalError.element);
   }
   static showGreetingAnimation() {
-    const introPlace = document.querySelector(`.intro__place`);
-    const introAsterisk = introPlace.querySelector(`.intro__asterisk`);
-    introAsterisk.classList.remove(`.loader`);
-    const greeting = new GreetingScreen();
-    main.appendChild(greeting.element);
-    greeting.element.classList.add(`greeting__place-animate`);
-    introPlace.classList.add(`intro__place-animate`);
-    setTimeout(removeIntro, ANIMATION_OUT);
+
+    setTimeout(removeIntro, ANIMATION_OUT_TIME);
   }
   static showGreeting() {
     const greeting = new GreetingScreen();
@@ -74,7 +69,7 @@ class Aplication {
   }
   static showModalConfirm() {
     const modalConfirm = new ModalConfirmElement();
-    main.appendChild(modalConfirm.element);
+    main.parentNode.appendChild(modalConfirm.element);
   }
   static showStats(state, answers, name) {
     const statistics = new StatsScreen(state, answers);
