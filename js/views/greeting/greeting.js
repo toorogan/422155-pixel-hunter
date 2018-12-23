@@ -1,5 +1,5 @@
 import GreetingView from './greeting-view';
-import Application from '../../application';
+import Aplication from '../../aplication';
 
 class GreetingScreen {
   constructor() {
@@ -19,7 +19,7 @@ class GreetingScreen {
   }
 
   click() {
-    Application.showRules();
+    Aplication.showRules();
   }
 
 }

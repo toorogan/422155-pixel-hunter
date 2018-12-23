@@ -3,6 +3,7 @@ import HeaderGameView from '../header/header-game-view';
 import GameView from './game-view.js';
 import Aplication from '../../aplication.js';
 import {resizeImages} from '../../resize-image/resize.js';
+
 const TICK_INTERVAL = 1000;
 
 class GameScreen {
