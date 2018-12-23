@@ -1,41 +1,94 @@
-// import IntroScreen from "./views/intro/intro";
+import Network from './network';
+import GameModel from './data/model';
 
-// import GreetingScreen from './views/greeting/greeting';
+import IntroScreen from "./views/intro/intro";
+import GreetingScreen from './views/greeting/greeting';
+import RulesScreen from './views/rules/rules';
+import GameScreen from './views/game/game';
+import StatsScreen from './views/stats/stats';
 
-// import Network from "./network";
+import ScoreboardView from './views/scoreboard/scoreboard-view';
+
 import ModalErrorView from './views/modals/modal-error-view';
+import ModalConfirmElement from './views/modals/modal-confirm';
+
 
 const ANIMATION_OUT = 3000;
 
 const main = document.getElementById(`main`);
-// let questData;
+
+let questData;
 
 const removeIntro = () => {
-  const introPlace = document.querySelector(`.loader`);
+  const introPlace = document.querySelector(`.intro__place`);
   if (introPlace) {
-    const greetingPlace = document.querySelector(`.loader`);
+    const greetingPlace = document.querySelector(`.greeting__place`);
     main.removeChild(introPlace);
-    greetingPlace.classList.remove(`loader`);
+    greetingPlace.classList.remove(`greeting__place-animate`, `greeting__place`);
   }
 };
 
-// const changeView = (element) => {
-//   main.innerHTML = ``;
-//   main.appendChild(element);
-// };
+const changeView = (element) => {
+  main.innerHTML = ``;
+  main.appendChild(element);
+};
 
 class Aplication {
   static run() {
-
+    const intro = new IntroScreen();
+    changeView(intro.element);
+    Network.loadData().
+    then((data) => {
+      questData = data;
+    }).
+    then(() => Aplication.showGreetingAnimation()).
+    catch(Aplication.showError);
   }
   static showError(error) {
     const modalError = new ModalErrorView(error);
     main.appendChild(modalError.element);
   }
-  static runGreeting() {
-
+  static showGreetingAnimation() {
+    const introPlace = document.querySelector(`.intro__place`);
+    const introAsterisk = introPlace.querySelector(`.intro__asterisk`);
+    introAsterisk.classList.remove(`.loader`);
+    const greeting = new GreetingScreen();
+    main.appendChild(greeting.element);
+    greeting.element.classList.add(`greeting__place-animate`);
+    introPlace.classList.add(`intro__place-animate`);
     setTimeout(removeIntro, ANIMATION_OUT);
   }
+  static showGreeting() {
+    const greeting = new GreetingScreen();
+    changeView(greeting.element);
+    greeting.element.classList.remove(`greeting__place`);
+  }
+  static showRules() {
+    const rules = new RulesScreen();
+    changeView(rules.element);
+  }
+  static showGame(playerName) {
+    const gameScreen = new GameScreen(new GameModel(questData, playerName));
+    changeView(gameScreen.element);
+    gameScreen.startGame();
+  }
+  static showModalConfirm() {
+    const modalConfirm = new ModalConfirmElement();
+    main.appendChild(modalConfirm.element);
+  }
+  static showStats(state, answers, name) {
+    const statistics = new StatsScreen(state, answers);
+    changeView(statistics.element);
+    const playerName = name;
+    const scoreBoard = new ScoreboardView();
+    const container = document.querySelector(`.result`);
+    container.appendChild(scoreBoard.element);
+    Network.saveResults(answers, state.lives, playerName).
+    then(() => Network.loadResults(playerName)).
+    then((data) => scoreBoard.showScores(data)).
+    catch(Aplication.showError);
+  }
+
 }
 
 export default Aplication;

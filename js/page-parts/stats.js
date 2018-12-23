@@ -1,4 +1,4 @@
-import {Limit} from "../data/constatns";
+import {Limit} from "../data/constants";
 
 const statsPart = (answersArray) => {
   let stat = answersArray.reduce((previous, current) => {

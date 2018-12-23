@@ -1,8 +1,8 @@
 import BackBtnView from '../back-btn/back-btn-view';
 import HeaderGameView from '../header/header-game-view';
-import GameView from './game-view.js';
-import Aplication from '../../aplication.js';
-import {resizeImages} from '../../resize-image/resize.js';
+import GameView from './game-view';
+import Aplication from '../../aplication';
+import {resizeImages} from '../../logic/resize-image';
 
 const TICK_INTERVAL = 1000;
 
