@@ -13,18 +13,14 @@ const ServerPictureTypeMap = {
 
 const preprocessLevel = (level) => {
   level.description = level.question;
-  // delete level.question;
   level.gameType = PictureType[level.type];
-  // delete level.type;
   level.questions = level.answers;
-  // delete level.answers;
 
   level.questions.map((question) => {
     question.width = question.image.width;
     question.height = question.image.height;
     question.image = question.image.url;
     question.answer = ServerPictureTypeMap[question.type];
-    // delete question.type;
   });
 };
 
