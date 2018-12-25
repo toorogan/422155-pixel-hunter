@@ -1,10 +1,9 @@
+import {Limit} from '../../data/constants'; 
 import BackBtnView from '../back-btn/back-btn-view';
 import HeaderGameView from '../header/header-game-view';
 import GameView from './game-view';
 import Aplication from '../../aplication';
 import {resizeImages} from '../../logic/resize-image';
-
-const TICK_INTERVAL = 1000;
 
 class GameScreen {
   constructor(model) {
@@ -47,7 +46,7 @@ class GameScreen {
       } else {
         this.answer(false);
       }
-    }, TICK_INTERVAL);
+    }, Limit.TICK_INTERVAL);
   }
 
   answer(answer) {
@@ -84,6 +83,9 @@ class GameScreen {
   updateTimer() {
     const timer = this.header.querySelector(`.game__timer`);
     timer.innerText = this.model.state.time;
+    if (this.model.state.time <= Limit.TIMER_TWINK && !timer.classList.contains(`game__timer--animate`)) {
+      timer.classList.add(`game__timer--animate`);
+    }
   }
   insertChildren(element, childNodes) {
     for (let child of childNodes) {

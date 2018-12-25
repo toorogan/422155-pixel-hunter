@@ -10,7 +10,8 @@ export const Limit = {
   LEVELS: 10,
   FAST_TIME: 10,
   SLOW_TIME: 20,
-  TIMER_TWINK: 5
+  TIMER_TWINK: 5,
+  TICK_INTERVAL: 1000
 };
 export const GameType = {
   PHOTO_OR_PICTURE_ONE: 1,
@@ -23,3 +24,11 @@ export const INITIAL_GAME = Object.freeze({
   lives: 4,
   time: 30
 });
+
+export const Answer = {
+  FAST: `fast`,
+  SLOW: `slow`,
+  CORRECT: `correct`,
+  WRONG: `wrong`
+
+};

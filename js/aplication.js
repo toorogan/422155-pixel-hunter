@@ -13,8 +13,6 @@ import ModalErrorView from './views/modals/modal-error-view';
 import ModalConfirmElement from './views/modals/modal-confirm';
 
 
-const ANIMATION_OUT_TIME = 2500;
-
 const main = document.getElementById(`main`);
 
 let questData;
@@ -22,15 +20,6 @@ let questData;
 const changeView = (element) => {
   main.innerHTML = ``;
   main.appendChild(element);
-};
-
-const removeIntro = () => {
-  const introPlace = document.querySelector(`.intro__place`);
-  if (!introPlace) {
-    return;
-  }
-  const greeting = new GreetingScreen();
-  changeView(greeting.element);
 };
 
 
@@ -41,18 +30,13 @@ class Aplication {
     Network.loadData().
     then((data) => {
       questData = data;
-    }).
-    then(() => Aplication.showGreetingAnimation()).
-    catch(Aplication.showError);
+    }).catch(Aplication.showError);
   }
   static showError(error) {
     const modalError = new ModalErrorView(error);
     main.parentNode.appendChild(modalError.element);
   }
-  static showGreetingAnimation() {
 
-    setTimeout(removeIntro, ANIMATION_OUT_TIME);
-  }
   static showGreeting() {
     const greeting = new GreetingScreen();
     changeView(greeting.element);

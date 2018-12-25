@@ -21,7 +21,7 @@ export const resize = (frame, given) => {
 };
 
 export const resizeImages = (element) => {
-  const images = element.querySelectorAll(`.game__option`);
+  const images = Array.from(element.querySelectorAll(`.game__option`));
   images.forEach((el) => {
     const frame = {
       width: el.clientWidth,

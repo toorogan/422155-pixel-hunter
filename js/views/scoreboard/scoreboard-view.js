@@ -1,5 +1,5 @@
 import AbstractView from '../abstract-view';
-import statsTableTemplate from '../../page-parts/stats-table';
+import getStatsTableTemplate from '../../page-parts/stats-table';
 
 class ScoreboardView extends AbstractView {
 
@@ -20,7 +20,7 @@ class ScoreboardView extends AbstractView {
       scores.pop();
       scores.reverse();
       this._scoreBoardContainer.innerHTML = `
-      ${scores.map((it, i) => statsTableTemplate(it, it.stats, i + 2)).join(``)}`;
+      ${scores.map((it, i) => getStatsTableTemplate(it, it.stats, i + 2)).join(``)}`;
     }
   }
 }

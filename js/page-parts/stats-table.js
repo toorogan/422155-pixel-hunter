@@ -1,27 +1,27 @@
 
 import pointsCounter from '../logic/points-counter';
 import statsPart from './stats';
-import {Rate} from '../data/constants';
+import {Rate, Answer} from '../data/constants';
 
 
 const countFastAnswers = (arr) => {
-  const resultArray = arr.filter((el) => el === `fast`);
+  const resultArray = arr.filter((el) => el === Answer.FAST);
   const fastAnswers = resultArray.length;
   return fastAnswers;
 };
 
 const countSlowAnswers = (arr) => {
-  const resultArray = arr.filter((el) => el === `slow`);
+  const resultArray = arr.filter((el) => el === Answer.SLOW);
   const slowAnswers = resultArray.length;
   return slowAnswers;
 };
 
 const pointsCounterForCorrect = (arr) => {
-  const resultArray = arr.filter((el) => el === `correct` || el === `slow` || el === `fast`);
+  const resultArray = arr.filter((el) => el === Answer.CORRECT || el === Answer.SLOW || el === Answer.FAST);
   const sum = resultArray.length * Rate.CORRECT_ANSWER_POINTS;
   return sum;
 };
-const statsTableMarkup = (state, answers, number) => {
+const getStatsTableMarkup = (state, answers, number) => {
   return `<table class="result__table">
       <tr>
         <td class="result__number">${number}.</td>
@@ -56,4 +56,4 @@ const statsTableMarkup = (state, answers, number) => {
     </table>`;
 };
 
-export default statsTableMarkup;
+export default getStatsTableMarkup;

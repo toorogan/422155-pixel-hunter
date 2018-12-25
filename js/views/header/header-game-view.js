@@ -5,7 +5,6 @@ class HeaderGameView extends AbstractView {
   constructor(state) {
     super();
     this.state = state;
-    this.init();
   }
 
   get template() {
@@ -20,12 +19,6 @@ class HeaderGameView extends AbstractView {
     </div>`;
   }
 
-  init() {
-    const timer = this.element.querySelector(`.game__timer`);
-    if (this.state.time <= Limit.TIMER_TWINK) {
-      timer.classList.add(`game__timer-animate`);
-    }
-  }
 }
 
 export default HeaderGameView;

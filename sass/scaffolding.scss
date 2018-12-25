@@ -116,6 +116,24 @@ a {
   animation: load 1.1s infinite linear;
 }
 
+.game__timer--animate {
+  animation-name: game-timer-twinking;
+  animation-duration: 0.7s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: alternate-reverse;
+}
+
+@keyframes game-timer-twinking {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 @keyframes load {
   0% {
     transform: rotate(0deg);

@@ -1,4 +1,4 @@
-import {INITIAL_GAME, Limit} from "./constants";
+import {INITIAL_GAME, Limit, Answer} from "./constants";
 
 const generateAnswerStat = (answerStatus, time) => {
   const answerResult = {
@@ -24,14 +24,14 @@ const convertAnswersArr = (arr) => {
     let answer;
     if (el.correctAnswer) {
       if (el.answerTime > Limit.TIME - Limit.FAST_TIME) {
-        answer = `fast`;
+        answer = Answer.FAST;
       } else if (el.answerTime < Limit.TIME - Limit.SLOW_TIME) {
-        answer = `slow`;
+        answer = Answer.SLOW;
       } else {
-        answer = `correct`;
+        answer = Answer.CORRECT;
       }
     } else {
-      answer = `wrong`;
+      answer = Answer.WRONG;
     }
     return answer;
   });

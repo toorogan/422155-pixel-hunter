@@ -1,7 +1,7 @@
 import {GameType} from '../../data/constants';
 import AbstractView from '../abstract-view';
 import gameFormTemplate from '../../page-parts/games';
-// import statsPart from '../../page-parts/stats';
+
 
 const showRightAnswerSingleGame = (debugMode, element, level) => {
   if (debugMode) {
@@ -74,7 +74,7 @@ const handleTripleGame = (element, level, debugMode, onAnswer) => {
   }
   tripleForm.addEventListener(`click`, (evt) => {
     let selectedImageSrc = ``;
-    if (!event.target.src) {
+    if (!evt.target.src) {
       selectedImageSrc = evt.target.querySelector(`img`).src;
     } else {
       selectedImageSrc = evt.target.src;
@@ -94,7 +94,7 @@ class GameView extends AbstractView {
     super();
     this.level = level;
     this.answers = answers;
-    this.debugMode = new URLSearchParams(document.location.search).get(`debug`) === `true`;
+    this.debugMode = (document.location.search).includes(`debug=true`);
 
   }
 

@@ -1,17 +1,18 @@
 import {assert} from "chai";
 import pointsCounter from "./points-counter";
+import {Answer} from '../data/constants';
 
 const makeArrayOfAnswers = (answeredQuestions, correct, slow, fast) => {
   const answersArray = [];
   for (let i = 0; i < answeredQuestions; i++) {
     if (fast > i) {
-      answersArray.push(`fast`);
+      answersArray.push(Answer.FAST);
     } else if (slow > i - fast) {
-      answersArray.push(`slow`);
+      answersArray.push(Answer.SLOW);
     } else if (answeredQuestions - correct > i - fast - slow) {
-      answersArray.push(`wrong`);
+      answersArray.push(Answer.WRONG);
     } else {
-      answersArray.push(`correct`);
+      answersArray.push(Answer.CORRECT);
     }
   }
   return answersArray;
