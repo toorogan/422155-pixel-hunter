@@ -1,4 +1,4 @@
-import {Limit} from '../../data/constants'; 
+import {Limit} from '../../data/constants';
 import BackBtnView from '../back-btn/back-btn-view';
 import HeaderGameView from '../header/header-game-view';
 import GameView from './game-view';
@@ -8,7 +8,10 @@ import {resizeImages} from '../../logic/resize-image';
 class GameScreen {
   constructor(model) {
     this.model = model;
-    this.content = new GameView(this.model.getCurrentLevel(), this.model.answers);
+    this.content = new GameView(
+        this.model.getCurrentLevel(),
+        this.model.answers
+    );
     this.gameHeader = new HeaderGameView(this.model.state);
     this.backButton = new BackBtnView();
 
@@ -20,16 +23,17 @@ class GameScreen {
     this.updateHeader();
   }
 
-
   get element() {
     return this.root;
   }
   createHeaderElement() {
     this.header = document.createElement(`header`);
     this.header.className = `header`;
-    this.insertChildren(this.header, [this.backButton.element.children[0], this.gameHeader.element.children[0], this.gameHeader.element.children[1]]);
-
-
+    this.insertChildren(this.header, [
+      this.backButton.element.children[0],
+      this.gameHeader.element.children[0],
+      this.gameHeader.element.children[1]
+    ]);
   }
   stopGame() {
     clearInterval(this._interval);
@@ -74,7 +78,11 @@ class GameScreen {
     const backButton = new BackBtnView();
 
     this.header.innerHTML = ``;
-    this.insertChildren(this.header, [backButton.element.children[0], gameHeader.element.children[0], gameHeader.element.children[1]]);
+    this.insertChildren(this.header, [
+      backButton.element.children[0],
+      gameHeader.element.children[0],
+      gameHeader.element.children[1]
+    ]);
 
     this.gameHeader = gameHeader;
     this.backButton = backButton;
@@ -83,7 +91,10 @@ class GameScreen {
   updateTimer() {
     const timer = this.header.querySelector(`.game__timer`);
     timer.innerText = this.model.state.time;
-    if (this.model.state.time <= Limit.TIMER_TWINK && !timer.classList.contains(`game__timer--animate`)) {
+    if (
+      this.model.state.time <= Limit.TIMER_TWINK &&
+      !timer.classList.contains(`game__timer--animate`)
+    ) {
       timer.classList.add(`game__timer--animate`);
     }
   }
@@ -91,17 +102,23 @@ class GameScreen {
     for (let child of childNodes) {
       element.appendChild(child);
     }
-
   }
   changeLevel() {
     this.updateHeader();
-    const level = new GameView(this.model.getCurrentLevel(), this.model.answers);
+    const level = new GameView(
+        this.model.getCurrentLevel(),
+        this.model.answers
+    );
     level.onAnswer = this.answer.bind(this);
     this.changeContentView(level);
   }
 
   endGame() {
-    Aplication.showStats(this.model.state, this.model.answers, this.model.playerName);
+    Aplication.showStats(
+        this.model.state,
+        this.model.answers,
+        this.model.playerName
+    );
   }
 
   changeContentView(view) {
