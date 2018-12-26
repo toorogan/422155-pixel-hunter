@@ -20,20 +20,20 @@ export const resize = (frame, given) => {
   return newObject;
 };
 
-export const resizeImages = (element) => {
-  const images = Array.from(element.querySelectorAll(`.game__option`));
-  images.forEach((el) => {
+export const resizeImages = (elements) => {
+  const images = Array.from(elements.querySelectorAll(`.game__option`));
+  images.forEach((image) => {
     const frame = {
-      width: el.clientWidth,
-      height: el.clientHeight
+      width: image.clientWidth,
+      height: image.clientHeight
     };
-    const imageElement = el.querySelector(`img`);
-    const image = new Image();
-    image.src = imageElement.src;
-    image.onload = () => {
+    const imageElement = image.querySelector(`img`);
+    const resizedImage = new Image();
+    resizedImage.src = imageElement.src;
+    resizedImage.onload = () => {
       const given = {
-        width: image.width,
-        height: image.height
+        width: resizedImage.width,
+        height: resizedImage.height
       };
       const imageNewSize = resize(frame, given);
       imageElement.width = imageNewSize.width;

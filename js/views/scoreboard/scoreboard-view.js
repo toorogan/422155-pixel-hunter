@@ -20,7 +20,7 @@ class ScoreboardView extends AbstractView {
       scores.pop();
       scores.reverse();
       this._scoreBoardContainer.innerHTML = `
-      ${scores.map((it, i) => getStatsTableTemplate(it, it.stats, i + 2)).join(``)}`;
+      ${scores.map((score, i) => getStatsTableTemplate(score, score.stats, i + 2)).join(``)}`;
     }
   }
 }

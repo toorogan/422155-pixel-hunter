@@ -4,21 +4,21 @@ import statsPart from './stats';
 import {Rate, Answer} from '../data/constants';
 
 
-const countFastAnswers = (arr) => {
-  const resultArray = arr.filter((el) => el === Answer.FAST);
-  const fastAnswers = resultArray.length;
+const countFastAnswers = (array) => {
+  const results = array.filter((element) => element === Answer.FAST);
+  const fastAnswers = results.length;
   return fastAnswers;
 };
 
-const countSlowAnswers = (arr) => {
-  const resultArray = arr.filter((el) => el === Answer.SLOW);
-  const slowAnswers = resultArray.length;
+const countSlowAnswers = (array) => {
+  const results = array.filter((element) => element === Answer.SLOW);
+  const slowAnswers = results.length;
   return slowAnswers;
 };
 
-const pointsCounterForCorrect = (arr) => {
-  const resultArray = arr.filter((el) => el === Answer.CORRECT || el === Answer.SLOW || el === Answer.FAST);
-  const sum = resultArray.length * Rate.CORRECT_ANSWER_POINTS;
+const pointsCounterForCorrect = (array) => {
+  const results = array.filter((element) => element === Answer.CORRECT || element === Answer.SLOW || element === Answer.FAST);
+  const sum = results.length * Rate.CORRECT_ANSWER_POINTS;
   return sum;
 };
 const getStatsTableMarkup = (state, answers, number) => {

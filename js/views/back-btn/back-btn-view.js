@@ -16,8 +16,8 @@ class BackBtnView extends AbstractView {
   </button>`;
   }
 
-  bind(el) {
-    const backButton = el.querySelector(`button.back`);
+  bind(element) {
+    const backButton = element.querySelector(`button.back`);
 
     const onRestartButtonClick = () => {
       this.onRestartClick();

@@ -16,7 +16,7 @@ const preprocessLevel = (level) => {
   level.gameType = PictureType[level.type];
   level.questions = level.answers;
 
-  level.questions.map((question) => {
+  level.questions.forEach((question) => {
     question.width = question.image.width;
     question.height = question.image.height;
     question.image = question.image.url;
@@ -26,9 +26,9 @@ const preprocessLevel = (level) => {
 
 export const prosessServerData = (data) => {
   let newObject = {};
-  data.map((el, index) => {
-    newObject[`game-${index + 1}`] = el;
+  data.forEach((element, index) => {
+    newObject[`game-${index + 1}`] = element;
   });
-  Object.keys(newObject).map((key) => preprocessLevel(newObject[key]));
+  Object.keys(newObject).forEach((key) => preprocessLevel(newObject[key]));
   return newObject;
 };

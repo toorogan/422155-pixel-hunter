@@ -19,21 +19,21 @@ const tick = (time) => {
   return time;
 };
 
-const convertAnswersArr = (arr) => {
-  let results = arr.map((el) => {
-    let answer;
-    if (el.correctAnswer) {
-      if (el.answerTime > Limit.TIME - Limit.FAST_TIME) {
-        answer = Answer.FAST;
-      } else if (el.answerTime < Limit.TIME - Limit.SLOW_TIME) {
+const convertAnswersArr = (answers) => {
+  let results = answers.map((answer) => {
+    let newAnswer;
+    if (answer.correctAnswer) {
+      if (answer.answerTime > Limit.TIME - Limit.FAST_TIME) {
+        newAnswer = Answer.FAST;
+      } else if (answer.answerTime < Limit.TIME - Limit.SLOW_TIME) {
         answer = Answer.SLOW;
       } else {
-        answer = Answer.CORRECT;
+        newAnswer = Answer.CORRECT;
       }
     } else {
-      answer = Answer.WRONG;
+      newAnswer = Answer.WRONG;
     }
-    return answer;
+    return newAnswer;
   });
   return results;
 };

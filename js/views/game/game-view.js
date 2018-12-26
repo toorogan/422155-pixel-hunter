@@ -38,8 +38,8 @@ const handleSingleGame = (element, level, debugMode, onAnswer) => {
   showRightAnswerSingleGame(debugMode, element, level);
   const contentForm = element.querySelector(`.game__content--wide`);
   const inputs = Array.from(contentForm.elements);
-  inputs.forEach((el) => {
-    el.addEventListener(`change`, () => {
+  inputs.forEach((input) => {
+    input.addEventListener(`change`, () => {
       const checkedValue = element.querySelector(`input:checked`).value;
       onAnswer(checkedValue === level.questions[0].answer);
     });
@@ -50,8 +50,8 @@ const handleDoubleGame = (element, level, debugMode, onAnswer) => {
   showRightAnswersDoubleGame(debugMode, element, level);
   const contentForm = element.querySelector(`.game__content`);
   const inputs = Array.from(contentForm.elements);
-  inputs.forEach((el) => {
-    el.addEventListener(`change`, () => {
+  inputs.forEach((input) => {
+    input.addEventListener(`change`, () => {
       const checkedAnswers = Array.from(contentForm.elements).filter((answer) => answer.checked);
       if (checkedAnswers.length === 2) {
         onAnswer(checkedAnswers[0].value === level.questions[0].answer &&
@@ -63,13 +63,13 @@ const handleDoubleGame = (element, level, debugMode, onAnswer) => {
 
 const handleTripleGame = (element, level, debugMode, onAnswer) => {
   const tripleForm = element.querySelector(`.game__content--triple`);
-  const questionsArr = level.questions;
+  const questions = level.questions;
   let correctImageSrc;
   if (level.description === `Найдите фото среди изображений`) {
-    correctImageSrc = questionsArr.find((question) => question.answer === `photo`).image;
+    correctImageSrc = questions.find((question) => question.answer === `photo`).image;
     showRightAnswerTripleGame(correctImageSrc, debugMode, element);
   } else {
-    correctImageSrc = questionsArr.find((question) => question.answer === `paint`).image;
+    correctImageSrc = questions.find((question) => question.answer === `paint`).image;
     showRightAnswerTripleGame(correctImageSrc, debugMode, element);
   }
   tripleForm.addEventListener(`click`, (evt) => {
@@ -80,9 +80,9 @@ const handleTripleGame = (element, level, debugMode, onAnswer) => {
       selectedImageSrc = evt.target.src;
     }
     if (level.description === `Найдите фото среди изображений`) {
-      correctImageSrc = questionsArr.find((question) => question.answer === `photo`).image;
+      correctImageSrc = questions.find((question) => question.answer === `photo`).image;
     } else {
-      correctImageSrc = questionsArr.find((question) => question.answer === `paint`).image;
+      correctImageSrc = questions.find((question) => question.answer === `paint`).image;
     }
     onAnswer(selectedImageSrc === correctImageSrc);
   });
